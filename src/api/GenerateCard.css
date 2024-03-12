@@ -1,0 +1,22 @@
+.card-sites-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.card-site-wrapper {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.card-count-wrapper {
+    padding: 20px;
+}
+
+.card-count {
+    font-family: "Pretendard-Bold";
+    font-size: 20px;
+}

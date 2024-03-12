@@ -1,0 +1,14 @@
+[
+    {
+        "name": "BOJ",
+        "url": "https://www.acmicpc.net"
+    },
+    {
+        "name": "Codeforces",
+        "url": "https://codeforces.com"
+    },
+    {
+        "name": "AtCoder",
+        "url": "https://atcoder.jp"
+    }
+]
