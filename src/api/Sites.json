@@ -1,14 +1,14 @@
 [
     {
         "name": "BOJ",
-        "url": "https://www.acmicpc.net"
+        "url": "https://api-py.vercel.app/?r=https://solved.ac/api/v3/user/show?handle="
     },
     {
         "name": "Codeforces",
-        "url": "https://codeforces.com"
+        "url": "https://codeforces.com/api/user.status?handle="
     },
     {
         "name": "AtCoder",
-        "url": "https://atcoder.jp"
+        "url": "https://api-py.vercel.app/?r=https://kenkoooo.com/atcoder/atcoder-api/v3/user/ac_rank?user="
     }
 ]

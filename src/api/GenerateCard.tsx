@@ -9,12 +9,13 @@ import { AutoTextSize } from 'auto-text-size';
 interface info {
     siteName: string | null,
     handle: string | null,
-    solved: number | null,
+    solved: number
 };
 
 const GenerateCard = () => {
     const [params, _] = useSearchParams();
     const [siteInfo, setSiteInfo] = useState<info[]>([]);
+    const [totalSolvedCount, setTotalSolvedCount] = useState<number>(0);
 
     // const getBOJInfo = async () => {
     //     const url = `https://solved.ac/api/v3/user/show?handle=${bojHandle}`;
@@ -25,20 +26,49 @@ const GenerateCard = () => {
     //     console.log(data);
     // }
 
+    const getSolvedCount = async (siteName: string, handle: string | null, url: string, ) : Promise<number> => {
+        const res = await fetch(url + handle, {
+            method: "GET"
+        });
+        const data = await res.json();
+        // console.log(data);
+
+        if(siteName === "boj") {
+            return data.solvedCount;
+        } else if(siteName === "codeforces") {
+            const set = new Set();
+            for(let i of data.result) {
+                if(i.verdict === "OK") set.add(i.problem.contestId + i.problem.index);
+            }
+            return set.size;
+        } else if(siteName === "atcoder") {
+            return data.count;
+        }
+
+        return 0;
+    };
+
     useEffect(() => {
         let newInfo: info[] = [];
-        Object.values(Sites).forEach((site) => {
-            const siteName = site.name.toLowerCase();
-            if(params.has(siteName)) {
-                // console.log(site.name, params.get(site.name));
-                newInfo.push({
-                    siteName: site.name,
-                    handle: params.get(siteName),
-                    solved: 0
-                });
+        let totalSolvedCount = 0;
+        (async () => {
+            for(let site of Object.values(Sites) as { name: string; url: string; }[]){
+                const siteName = site.name.toLowerCase();
+                if(params.has(siteName) && params.get(siteName) !== "") {
+                    const handle = params.get(siteName);
+                    const solved = await getSolvedCount(siteName, handle, site.url);
+                    totalSolvedCount += solved;
+                    newInfo.push({
+                        siteName: site.name,
+                        handle: handle,
+                        solved: solved
+                    });
+                }
             }
-        });
-        setSiteInfo(newInfo);
+
+            setSiteInfo(newInfo);
+            setTotalSolvedCount(totalSolvedCount);
+        })();
     }, []);
 
     return (
@@ -72,7 +102,7 @@ const GenerateCard = () => {
                 <div className="card-count-wrapper">
                     Total solved
                     <div className="card-count">
-                        {0}
+                        {totalSolvedCount}
                     </div>
                 </div>
             </Box>
