@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Box from '@mui/material/Box';
+import { AutoTextSize } from 'auto-text-size';
 import Sites from "./Sites.json";
 import './GenerateCard.css';
 
@@ -54,9 +55,13 @@ const GenerateCard = () => {
                     {
                         siteInfo.map((info) => {
                             return (
+                                info.handle === null ? null :
                                 <div className="card-site-wrapper">
-                                    <div style={{width: "100px  "}}>{info.siteName}</div>
-                                    <div style={{width: "50px"}}>{info.handle}</div>
+                                    <img src={"../assets/" + info.siteName?.toLowerCase() + ".png"} style={{width: "20px", height: "20px"}}></img>
+                                    <div style={{width: "120px", marginLeft: "10px"}}>
+                                        <AutoTextSize maxFontSizePx={16}>{info.handle}</AutoTextSize>
+                                    </div>
+                                    <div style={{marginLeft: "10px"}}>{info.solved}</div>
                                 </div>
                             )
                         })
