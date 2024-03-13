@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Box from '@mui/material/Box';
-import { AutoTextSize } from 'auto-text-size';
 import Sites from "./Sites.json";
 import './GenerateCard.css';
+//@ts-ignore
+import { AutoTextSize } from 'auto-text-size';
 
 interface info {
     siteName: string | null,
