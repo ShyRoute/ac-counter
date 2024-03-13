@@ -56,7 +56,7 @@ const GenerateCard = () => {
                     {
                         siteInfo.map((info) => {
                             return (
-                                info.handle === null ? null :
+                                info.handle === "" ? null :
                                 <div className="card-site-wrapper">
                                     <img src={"/assets/" + info.siteName?.toLowerCase() + ".png"} style={{width: "20px", height: "20px"}}></img>
                                     <div style={{width: "120px", marginLeft: "10px"}}>
