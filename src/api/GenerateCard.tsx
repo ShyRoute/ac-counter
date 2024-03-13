@@ -58,7 +58,7 @@ const GenerateCard = () => {
                             return (
                                 info.handle === null ? null :
                                 <div className="card-site-wrapper">
-                                    <img src={"../assets/" + info.siteName?.toLowerCase() + ".png"} style={{width: "20px", height: "20px"}}></img>
+                                    <img src={"/assets/" + info.siteName?.toLowerCase() + ".png"} style={{width: "20px", height: "20px"}}></img>
                                     <div style={{width: "120px", marginLeft: "10px"}}>
                                         <AutoTextSize maxFontSizePx={16}>{info.handle}</AutoTextSize>
                                     </div>
