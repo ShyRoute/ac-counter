@@ -16,16 +16,7 @@ const GenerateCard = () => {
     const [params, _] = useSearchParams();
     const [siteInfo, setSiteInfo] = useState<info[]>([]);
     const [totalSolvedCount, setTotalSolvedCount] = useState<number>(0);
-
-    // const getBOJInfo = async () => {
-    //     const url = `https://solved.ac/api/v3/user/show?handle=${bojHandle}`;
-    //     const response = await fetch(`https://api-py.vercel.app/?r=${url}`, {
-    //         method: "GET"
-    //     });
-    //     const data = await response.json();
-    //     console.log(data);
-    // }
-
+    
     const getSolvedCount = async (siteName: string, handle: string | null, url: string, ) : Promise<number> => {
         const res = await fetch(url + handle, {
             method: "GET"
